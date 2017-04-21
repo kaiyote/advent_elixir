@@ -32,8 +32,7 @@ defmodule AdventElixir.Day2 do
     input
     |> String.trim()
     |> String.split(~r/(\r|\n)/)
-    |> Enum.map(&String.trim/1)
-    |> Enum.map(&String.to_charlist/1)
+    |> Enum.map(&(&1 |> String.trim() |> String.to_charlist()))
   end
 
   defp walk_standard_keypad(?U, x) when x in 1..3, do: x
