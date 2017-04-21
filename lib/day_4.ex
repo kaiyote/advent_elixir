@@ -12,6 +12,7 @@ defmodule AdventElixir.Day4 do
   """
 
   import AdventElixir.Input, only: [day4: 0]
+  import AdventElixir.Util
 
   def part1 do
     day4()
@@ -54,17 +55,6 @@ defmodule AdventElixir.Day4 do
     |> Enum.map_join(fn {k, _} -> k end)
 
     check == sum
-  end
-
-  defp sorted_rle(<< first :: binary-size(1), rest :: binary>>) do
-    sorted_rle(rest, first, %{})
-  end
-  defp sorted_rle("", char, result) do
-    Map.update(result, char, 1, &(&1 + 1))
-  end
-  defp sorted_rle(<< next :: binary-size(1), rest :: binary>>, char, result) do
-    result = Map.update(result, char, 1, &(&1 + 1))
-    sorted_rle(rest, next, result)
   end
 
   def decode(encrypted, shift_amount) do

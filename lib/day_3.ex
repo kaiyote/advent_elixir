@@ -12,6 +12,7 @@ defmodule AdventElixir.Day3 do
   """
 
   import AdventElixir.Input, only: [day3: 0]
+  import AdventElixir.Util
 
   def part1 do
     day3()
@@ -28,8 +29,7 @@ defmodule AdventElixir.Day3 do
     |> String.split(~r/(\r|\n)/)
     |> Enum.map(&(&1 |> String.trim() |> String.split(~r/\s+/)
                   |> Enum.map(fn s -> String.to_integer(s) end)))
-    |> Enum.reduce([[], [], []],
-                   fn [x, y, z], [colx, coly, colz] -> [[x | colx], [y | coly], [z | colz]] end)
+    |> transpose()
     |> Enum.map(&(&1 |> Enum.reverse() |> Enum.chunk(3)))
     |> Enum.flat_map(&(&1))
     |> Enum.map(&Enum.sort(&1))
