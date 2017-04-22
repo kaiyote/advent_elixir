@@ -7,10 +7,11 @@ defmodule AdventElixir.Day7 do
       iex> part1()
       110
 
+      iex> part2()
+      242
   """
 
   import AdventElixir.Input, only: [day7: 0]
-  import AdventElixir.Util
 
   def part1 do
     day7()
@@ -32,7 +33,7 @@ defmodule AdventElixir.Day7 do
     |> Enum.map(&(&1 |> String.trim() |> create_ip7_map()))
   end
 
-  defp create_ip7_map(line) do
+  def create_ip7_map(line) do
     split = ~r/(?<=\w)(?=\[)|(?<=\])(?=\w)/
     line
     |> String.split(split)
@@ -46,8 +47,25 @@ defmodule AdventElixir.Day7 do
     String.match? sequence, abba
   end
 
-  defp contains_aba_bab(%{snet: supernet, hnet: hypernet}) do
+  def contains_aba_bab(%{snet: supernet, hnet: hypernet}) do
+    potential_abas = supernet
+      |> Enum.flat_map(&(&1 |> String.to_charlist |> Enum.chunk(3, 1)
+        |> Enum.map(fn c -> List.to_string(c) end)))
+      |> Enum.filter(&String.match?(&1, ~r/(.)(?!\1)(.)\1/))
 
+    potential_babs = hypernet
+      |> Enum.flat_map(&(&1 |> String.to_charlist |> Enum.chunk(3, 1)
+        |> Enum.map(fn c -> List.to_string(c) end)))
+      |> Enum.filter(&String.match?(&1, ~r/(.)(?!\1)(.)\1/))
+      |> Enum.map(&bab_to_aba/1)
 
+    potential_abas
+    |> Enum.any?(fn aba -> Enum.member?(potential_babs, aba) end)
+  end
+
+  def bab_to_aba(bab) do
+    a = String.at(bab, 1)
+    b = String.at(bab, 0)
+    a <> b <> a
   end
 end

@@ -1,4 +1,6 @@
 defmodule AdventElixir.Util do
+  @moduledoc false
+
   def transpose(rows) do
     rows
     |> List.zip()

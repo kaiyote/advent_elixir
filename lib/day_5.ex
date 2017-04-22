@@ -35,7 +35,8 @@ defmodule AdventElixir.Day5 do
   end
 
   defp prepare_input(input) do
-    Stream.iterate(0, &(&1 + 1))
+    0
+    |> Stream.iterate(&(&1 + 1))
     |> Stream.map(&(:md5 |> :crypto.hash(input <> Integer.to_string(&1)) |> Base.encode16
                   |> String.downcase))
   end
