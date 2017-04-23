@@ -4,24 +4,22 @@ defmodule AdventElixir.Day1 do
 
   ## Examples
 
-      iex> part1()
+      iex> part1(AdventElixir.Input.day1)
       278
 
-      iex> part2()
+      iex> part2(AdventElixir.Input.day1)
       161
   """
 
-  import AdventElixir.Input, only: [day1: 0]
-
-  def part1 do
-    day1()
+  def part1(input) do
+    input
     |> prepare_input()
     |> Enum.reduce(%{x: 0, y: 0, facing: :north}, &move(&1, &2))
     |> get_distance()
   end
 
-  def part2 do
-    day1()
+  def part2(input) do
+    input
     |> prepare_input()
     |> Enum.scan(%{x: 0, y: 0, facing: :north}, &move2(&1, &2))
     |> Enum.flat_map(fn x -> x end)

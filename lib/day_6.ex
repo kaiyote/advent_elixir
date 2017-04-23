@@ -4,25 +4,24 @@ defmodule AdventElixir.Day6 do
 
   ## Examples
 
-      iex> part1()
+      iex> part1(AdventElixir.Input.day6)
       "mshjnduc"
 
-      iex> part2()
+      iex> part2(AdventElixir.Input.day6)
       "apfeeebz"
   """
 
-  import AdventElixir.Input, only: [day6: 0]
   import AdventElixir.Util
 
-  def part1 do
-    day6()
+  def part1(input) do
+    input
     |> prepare_input()
     |> Enum.map(&get_appropriate_character(&1, fn left, right -> left >= right end))
     |> Enum.join()
   end
 
-  def part2 do
-    day6()
+  def part2(input) do
+    input
     |> prepare_input()
     |> Enum.map(&get_appropriate_character(&1, fn left, right -> left <= right end))
     |> Enum.join()

@@ -4,26 +4,25 @@ defmodule AdventElixir.Day8 do
 
   ## Examples
 
-      iex> part1()
+      iex> part1(AdventElixir.Input.day8)
       123
 
-      iex> part2()
+      iex> part2(AdventElixir.Input.day8)
       :ok
   """
 
-  import AdventElixir.Input, only: [day8: 0]
   import AdventElixir.Util
 
-  def part1 do
-    day8()
+  def part1(input) do
+    input
     |> prepare_input()
     |> process_commands(empty_screen(50, 6))
     |> List.flatten()
     |> Enum.count(&(&1 == 1))
   end
 
-  def part2 do
-    day8()
+  def part2(input) do
+    input
     |> prepare_input()
     |> process_commands(empty_screen(50, 6))
     |> print_screen()

@@ -4,25 +4,24 @@ defmodule AdventElixir.Day4 do
 
   ## Examples
 
-      iex> part1()
+      iex> part1(AdventElixir.Input.day4)
       137896
 
-      iex> part2()
+      iex> part2(AdventElixir.Input.day4)
       501
   """
 
-  import AdventElixir.Input, only: [day4: 0]
   import AdventElixir.Util
 
-  def part1 do
-    day4()
+  def part1(input) do
+    input
     |> prepare_input()
     |> Enum.filter(&valid?/1)
     |> Enum.reduce(0, fn %{sec_id: id}, acc -> acc + id end)
   end
 
-  def part2 do
-    day4()
+  def part2(input) do
+    input
     |> prepare_input()
     |> Enum.filter(&valid?/1)
     |> Enum.map(&(%{&1 | enc_name: decode(&1.enc_name, &1.sec_id)}))

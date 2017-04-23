@@ -4,25 +4,23 @@ defmodule AdventElixir.Day5 do
 
   ## Examples
 
-      iex> part1()
+      iex> part1(AdventElixir.Input.day5)
       "d4cd2ee1"
 
-      iex> part2()
+      iex> part2(AdventElixir.Input.day5)
       "f2c730e5"
   """
 
-  import AdventElixir.Input, only: [day5: 0]
-
-  def part1 do
-    day5()
+  def part1(input) do
+    input
     |> prepare_input()
     |> Stream.filter_map(&String.starts_with?(&1, "00000"), &String.at(&1, 5))
     |> Stream.take(8)
     |> Enum.join()
   end
 
-  def part2 do
-    day5()
+  def part2(input) do
+    input
     |> prepare_input()
     |> Stream.filter_map(
       &(String.starts_with?(&1, "00000") && String.at(&1, 5) in ~w(0 1 2 3 4 5 6 7)),

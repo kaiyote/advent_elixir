@@ -4,24 +4,22 @@ defmodule AdventElixir.Day2 do
 
   ## Examples
 
-      iex> part1()
+      iex> part1(AdventElixir.Input.day2)
       "48584"
 
-      iex> part2()
+      iex> part2(AdventElixir.Input.day2)
       "563B6"
   """
 
-  import AdventElixir.Input, only: [day2: 0]
-
-  def part1 do
-    day2()
+  def part1(input) do
+    input
     |> prepare_input()
     |> Enum.scan(5, fn line, acc -> Enum.reduce(line, acc, &walk_standard_keypad(&1, &2)) end)
     |> Enum.join()
   end
 
-  def part2 do
-    day2()
+  def part2(input) do
+    input
     |> prepare_input()
     |> Enum.scan(5, fn line, acc -> Enum.reduce(line, acc, &walk_crazy_keypad(&1, &2)) end)
     |> Enum.map(&Integer.to_string(&1, 14)) # 1 - D == base 14 (1 - 13)

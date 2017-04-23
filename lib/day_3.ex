@@ -4,18 +4,17 @@ defmodule AdventElixir.Day3 do
 
   ## Examples
 
-      iex> part1()
+      iex> part1(AdventElixir.Input.day3)
       982
 
-      iex> part2()
+      iex> part2(AdventElixir.Input.day3)
       1826
   """
 
-  import AdventElixir.Input, only: [day3: 0]
   import AdventElixir.Util
 
-  def part1 do
-    day3()
+  def part1(input) do
+    input
     |> String.trim()
     |> String.split(~r/(\r|\n)/)
     |> Enum.map(&(&1 |> String.trim() |> String.split(~r/\s+/)
@@ -23,8 +22,8 @@ defmodule AdventElixir.Day3 do
     |> Enum.count(fn [x, y, z] -> x + y > z end)
   end
 
-  def part2 do
-    day3()
+  def part2(input) do
+    input
     |> String.trim()
     |> String.split(~r/(\r|\n)/)
     |> Enum.map(&(&1 |> String.trim() |> String.split(~r/\s+/)

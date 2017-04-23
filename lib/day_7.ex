@@ -4,24 +4,22 @@ defmodule AdventElixir.Day7 do
 
   ## Examples
 
-      iex> part1()
+      iex> part1(AdventElixir.Input.day7)
       110
 
-      iex> part2()
+      iex> part2(AdventElixir.Input.day7)
       242
   """
 
-  import AdventElixir.Input, only: [day7: 0]
-
-  def part1 do
-    day7()
+  def part1(input) do
+    input
     |> prepare_input()
     |> Enum.count(fn %{snet: snet, hnet: hnet} ->
       Enum.any?(snet, &contains_abba/1) && Enum.all?(hnet, &(not contains_abba(&1))) end)
   end
 
-  def part2 do
-    day7()
+  def part2(input) do
+    input
     |> prepare_input()
     |> Enum.count(&contains_aba_bab/1)
   end
