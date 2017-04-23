@@ -44,9 +44,9 @@ defmodule AdventElixir.Day9 do
     |> Enum.map(&char_to_token/1)
   end
 
-  defp char_to_token("x"), do: %{type: :mult_div}
-  defp char_to_token("("), do: %{type: :mult_start}
-  defp char_to_token(")"), do: %{type: :mult_end}
+  defp char_to_token("x"), do: %{type: :mult_div, value: "x"}
+  defp char_to_token("("), do: %{type: :mult_start, value: "("}
+  defp char_to_token(")"), do: %{type: :mult_end, value: ")"}
   defp char_to_token(c) when c in ~w(1 2 3 4 5 6 7 8 9 0) do
     %{type: :num, value: String.to_integer(c)}
   end
