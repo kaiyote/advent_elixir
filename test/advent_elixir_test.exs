@@ -9,4 +9,5 @@ defmodule AdventElixirTest do
   doctest AdventElixir.Day6, import: true
   doctest AdventElixir.Day7, import: true
   doctest AdventElixir.Day8, import: true
+  doctest AdventElixir.Day9, import: true
 end
