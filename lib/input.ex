@@ -5825,4 +5825,11 @@ defmodule AdventElixir.Input do
     bot 68 gives low to bot 96 and high to bot 183
     bot 111 gives low to bot 125 and high to bot 51"
   end
+
+  def day11 do
+    "The first floor contains a thulium generator, a thulium-compatible microchip, a plutonium generator, and a strontium generator.
+    The second floor contains a plutonium-compatible microchip and a strontium-compatible microchip.
+    The third floor contains a promethium generator, a promethium-compatible microchip, a ruthenium generator, and a ruthenium-compatible microchip.
+    The fourth floor contains nothing relevant."
+  end
 end
