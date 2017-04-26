@@ -20,7 +20,7 @@ defmodule AdventElixir.Day11 do
     input
     |> String.trim()
     |> String.split(~r/(\r|\n)/)
-    |> Enum.map(&String.trim/1)
+    |> Enum.map(&(&1 |> String.trim() |> String.replace(".", "")))
     |> generate_initial_state()
   end
 
@@ -33,18 +33,38 @@ defmodule AdventElixir.Day11 do
   end
 
   defp process_description("The first floor contains " <> contents, state_map) do
-    floor_contents = contents
-      |> String.split(~r/( and a )|(\s?a )/, trim: true)
-      |> Enum.map(&String.split(&1))
-    build_floor 1, contents, state_map
+    process_description contents, 1, state_map
   end
   defp process_description("The second floor contains " <> contents, state_map) do
-    build_floor 2, contents, state_map
+    process_description contents, 2, state_map
   end
   defp process_description("The third floor contains " <> contents, state_map) do
-    build_floor 3, contents, state_map
+    process_description contents, 3, state_map
   end
   defp process_description("The fourth floor contains " <> contents, state_map) do
-    build_floor 4, contents, state_map
+    process_description contents, 4, state_map
+  end
+  defp process_description(contents, floor_num, state_map) do
+    floor_contents = contents
+      |> String.split(~r/( and a )|(\s?a )/, trim: true)
+      |> Enum.map(&String.split(&1, " ", trim: true))
+
+    build_floor floor_contents, floor_num, state_map
+  end
+
+  defp build_floor([], floor, state_map), do: state_map
+  defp build_floor([["nothing", "relevant"]], floor, state_map) do
+    Map.put(state_map, floor, %{generators: [], microchips: []})
+  end
+  defp build_floor([[element, "generator"] | rest], floor, state_map) do
+    map = Map.update(state_map, floor, %{generators: [String.to_atom(element)], microchips: []},
+      fn current -> %{current | generators: [String.to_atom(element), current.generators]} end)
+    build_floor rest, floor, map
+  end
+  defp build_floor([[element, "microchip"] | rest], floor, state_map) do
+    element = element |> String.split("-") |> hd() |> String.to_atom()
+    map = Map.update(state_map, floor, %{generators: [], microchips: [element]},
+      fn current -> %{current | microchips: [element | current.microchips]} end)
+    build_floor rest, floor, map
   end
 end
