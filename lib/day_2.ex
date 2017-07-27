@@ -29,7 +29,7 @@ defmodule AdventElixir.Day2 do
   defp prepare_input(input) do
     input
     |> String.trim()
-    |> String.split(~r/(\r|\n)/)
+    |> String.split(~r/(\r|\n)/, trim: true)
     |> Enum.map(&(&1 |> String.trim() |> String.to_charlist()))
   end
 

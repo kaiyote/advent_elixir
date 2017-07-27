@@ -15,8 +15,7 @@ defmodule AdventElixir.Day3 do
 
   def part1(input) do
     input
-    |> String.trim()
-    |> String.split(~r/(\r|\n)/)
+    |> prepare_input()
     |> Enum.map(&(&1 |> String.trim() |> String.split(~r/\s+/)
                 |> Enum.map(fn s -> String.to_integer(s) end) |> Enum.sort()))
     |> Enum.count(fn [x, y, z] -> x + y > z end)
@@ -24,8 +23,7 @@ defmodule AdventElixir.Day3 do
 
   def part2(input) do
     input
-    |> String.trim()
-    |> String.split(~r/(\r|\n)/)
+    |> prepare_input()
     |> Enum.map(&(&1 |> String.trim() |> String.split(~r/\s+/)
                   |> Enum.map(fn s -> String.to_integer(s) end)))
     |> transpose()
@@ -33,5 +31,11 @@ defmodule AdventElixir.Day3 do
     |> Enum.flat_map(&(&1))
     |> Enum.map(&Enum.sort(&1))
     |> Enum.count(fn [x, y, z] -> x + y > z end)
+  end
+
+  defp prepare_input(input) do
+    input
+    |> String.trim()
+    |> String.split(~r/(\r|\n)/, trim: true)
   end
 end

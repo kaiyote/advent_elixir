@@ -1,6 +1,6 @@
 defmodule AdventElixir.Day11 do
   @moduledoc ~S"""
-  Day 9
+  Day 11
 
   ## Examples
 
@@ -19,7 +19,7 @@ defmodule AdventElixir.Day11 do
   defp prepare_start_state(input) do
     input
     |> String.trim()
-    |> String.split(~r/(\r|\n)/)
+    |> String.split(~r/(\r|\n)/, trim: true)
     |> Enum.map(&(&1 |> String.trim() |> String.replace(".", "")))
     |> generate_initial_state()
   end

@@ -31,7 +31,7 @@ defmodule AdventElixir.Day8 do
   defp prepare_input(input) do
     input
     |> String.trim()
-    |> String.split(~r/(\r|\n)/)
+    |> String.split(~r/(\r|\n)/, trim: true)
     |> Enum.map(&String.trim/1)
   end
 

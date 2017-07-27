@@ -14,7 +14,8 @@ defmodule AdventElixir.Day5 do
   def part1(input) do
     input
     |> prepare_input()
-    |> Stream.filter_map(&String.starts_with?(&1, "00000"), &String.at(&1, 5))
+    |> Stream.filter(&String.starts_with?(&1, "00000"))
+    |> Stream.map(&String.at(&1, 5))
     |> Stream.take(8)
     |> Enum.join()
   end
@@ -22,9 +23,8 @@ defmodule AdventElixir.Day5 do
   def part2(input) do
     input
     |> prepare_input()
-    |> Stream.filter_map(
-      &(String.starts_with?(&1, "00000") && String.at(&1, 5) in ~w(0 1 2 3 4 5 6 7)),
-      &({&1 |> String.at(5) |> String.to_integer(), String.at(&1, 6)}))
+    |> Stream.filter(&(String.starts_with?(&1, "00000") && String.at(&1, 5) in ~w(0 1 2 3 4 5 6 7)))
+    |> Stream.map(&({&1 |> String.at(5) |> String.to_integer(), String.at(&1, 6)}))
     |> Stream.uniq_by(fn {pos, _} -> pos end)
     |> Stream.take(8)
     |> Enum.sort_by(fn {k, _} -> k end)

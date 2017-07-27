@@ -34,13 +34,13 @@ defmodule AdventElixir.Day4 do
   defp prepare_input(input) do
     input
     |> String.trim()
-    |> String.split(~r/(\r|\n)/)
+    |> String.split(~r/(\r|\n)/, trim: true)
     |> Enum.map(&(&1 |> String.trim() |> make_room_struct()))
   end
 
   defp make_room_struct(line) do
     [name, id_sum] = String.split line, ~r/-(?=\d)/
-    [id, sum] = id_sum |> String.replace(~r/(\[|\])/, "") |> String.split(~r/(?<=\d)(?!\d)/)
+    [id, sum] = id_sum |> String.replace(~r/(\[|\])/, "") |> String.split(~r/(?<=\d)(?!\d)/, trim: true)
     %{enc_name: name, sec_id: String.to_integer(id), checksum: sum}
   end
 
