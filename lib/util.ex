@@ -23,3 +23,14 @@ defmodule AdventElixir.Util do
     sorted_rle(rest, next, result)
   end
 end
+
+defmodule AdventElixir.Util.Point do
+  @moduledoc false
+
+  @enforce_keys ~w(x y)a
+  defstruct ~w(x y)a
+
+  def add(%__MODULE__{} = point, x \\ 0, y \\ 0) do
+    %{point | x: point.x + x, y: point.y + y}
+  end
+end

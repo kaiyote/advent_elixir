@@ -4,29 +4,9 @@ defmodule AdventElixir.Day9 do
 
   ## Examples
 
-      iex> part1("ADVENT")
-      6
-      iex> part1("A(1x5)BC")
-      7
-      iex> part1("(3x3)XYZ")
-      9
-      iex> part1("A(2x2)BCD(2x2)EFG")
-      11
-      iex> part1("(6x1)(1x3)A")
-      6
-      iex> part1("X(8x2)(3x3)ABCY")
-      18
       iex> part1(AdventElixir.Input.day9())
       97714
 
-      iex> part2("(3x3)XYZ")
-      9
-      iex> part2("X(8x2)(3x3)ABCY")
-      20
-      iex> part2("(27x12)(20x12)(13x14)(7x10)(1x12)A")
-      241920
-      iex> part2("(25x3)(3x3)ABC(2x3)XY(5x2)PQRSTX(18x9)(3x2)TWO(5x7)SEVEN")
-      445
       iex> part2(AdventElixir.Input.day9())
       10762972461
   """
@@ -135,7 +115,7 @@ defmodule AdventElixir.Day9 do
 
   defp interpret_v2(nodes, result \\ 0)
   defp interpret_v2([], result), do: result
-  defp interpret_v2([%{type: :single_char, value: value} | rest], result) do
+  defp interpret_v2([%{type: :single_char} | rest], result) do
     interpret_v2(rest, result + 1)
   end
   defp interpret_v2([%{type: :multiplier, times: x, tree: tree} | rest], result) do

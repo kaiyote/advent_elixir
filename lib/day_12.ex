@@ -4,14 +4,6 @@ defmodule AdventElixir.Day12 do
 
   ## Examples
 
-    iex> part1("cpy 41 a
-    ...> inc a
-    ...> inc a
-    ...> dec a
-    ...> jnz a 2
-    ...> dec a")
-    42
-
     iex> part1(AdventElixir.Input.day12())
     318020
 

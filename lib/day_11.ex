@@ -52,7 +52,7 @@ defmodule AdventElixir.Day11 do
     build_floor floor_contents, floor_num, state_map
   end
 
-  defp build_floor([], floor, state_map), do: state_map
+  defp build_floor([], _floor, state_map), do: state_map
   defp build_floor([["nothing", "relevant"]], floor, state_map) do
     Map.put(state_map, floor, %{generators: [], microchips: []})
   end

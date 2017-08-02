@@ -5858,4 +5858,6 @@ defmodule AdventElixir.Input do
     dec c
     jnz c -5"
   end
+
+  def day13, do: 1364
 end
