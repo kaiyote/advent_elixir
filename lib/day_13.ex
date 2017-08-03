@@ -1,7 +1,7 @@
 defmodule AdventElixir.Day13 do
   alias AdventElixir.Util.Point
   @moduledoc ~S"""
-  Day 12
+  Day 13
 
   ## Examples
 
